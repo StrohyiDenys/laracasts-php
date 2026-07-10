@@ -1,0 +1,25 @@
+services:
+  # Сервер Apache + PHP
+  web:
+    build: .
+    ports:
+      - "80:80" # Твой сайт будет доступен по адресу localhost:8000
+    volumes:
+      - ./src:/var/www/html # Синхронизируем папку src с папкой сервера
+    depends_on:
+      - db # Ждем, пока запустится база данных
+
+  # База данных MySQL
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: myapp_db # Имя базы данных
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - db_data:/var/lib/mysql # Сохраняем данные БД, чтобы они не удалились после остановки
+
+# Создаем место для хранения данных MySQL
+volumes:
+  db_data:
