@@ -8,14 +8,15 @@
             <?php foreach ($notes as $note) : ?>
                 <li>
                     <a href="/note?id=<?=$note['id']?>" class="text-sky-500  underline">
-                        <?=$note['body']?>
+                        <?=htmlspecialchars($note['body'])?>
                     </a>
                 </li>
             <?php endforeach;?>
             </ul>
             <li class="list-none mt-6">
                 <p>
-                    <a href="/note/create" class="text-sky-500  underline">Create Note</p>
+                    <a href="/note/create" class="text-sky-500  underline">Create Note </a>
+                </p>
             </li>
         </div>
 
