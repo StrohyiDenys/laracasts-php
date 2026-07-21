@@ -9,4 +9,4 @@ if ($note['user_id'] != $currentUserId){
     abort(response::FORBIDDEN);
 }
 $heading = 'Current Note';
-require "views/note.view.php";
+require "views/notes/show.view.php";
