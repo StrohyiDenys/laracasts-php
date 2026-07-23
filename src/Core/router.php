@@ -1,9 +1,9 @@
 <?php
-$routes = require "routes.php";
+$routes = require base_path("routes.php");
 
 function routeToController($uri, $routes)
 {
-    array_key_exists($uri, $routes) ? require($routes[$uri]): abort();
+    array_key_exists($uri, $routes) ? require base_path($routes[$uri]): abort();
 }
 function abort($code = 404)
 {
@@ -11,7 +11,7 @@ function abort($code = 404)
         $code = 500;
     }
     http_response_code($code);
-    include "views/$code.php";
+    include base_path("views/$code.php");
     die();
 }
 

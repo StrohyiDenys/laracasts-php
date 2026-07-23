@@ -1,5 +1,4 @@
 <?php
-//Файлы, содежащие только класс называют с большой буквы
 class Database{
     private $connection;
     private $statement;
