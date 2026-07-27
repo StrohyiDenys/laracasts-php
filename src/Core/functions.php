@@ -1,4 +1,5 @@
 <?php
+use Core\Response;
 function dd($val){
     echo "<pre>";
     var_dump($val);
@@ -11,6 +12,7 @@ function isUrl($url){
 
 function authorize($condition, $status = Response::FORBIDDEN){
     if (!$condition) abort($status);
+    return true;
 }
 function base_path($path){
     return BASE_PATH . $path;

@@ -9,11 +9,11 @@ class Database{
         $dsn = 'mysql:' . http_build_query($config, '', ';');
         $this->connection = new PDO($dsn, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]); //Объект класса ПДО
+        ]);
     }
     public function Query($query, $params = []) //returns an executed query (return type: PDOStatement)
     {
-        $this->statement = $this->connection->prepare($query); //Объект класса ПДОстейтмент
+        $this->statement = $this->connection->prepare($query);
         $this->statement->execute($params);
         return $this;
     }

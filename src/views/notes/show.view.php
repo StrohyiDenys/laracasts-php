@@ -8,6 +8,10 @@
                         <?=htmlspecialchars($note['body'])?>
                 </li>
                 <p><a href="/notes" class="inline-block mt-4 text-sky-500  underline">Go back...</a></p>
+                <form method="POST" class="mt-3">
+                    <input type="hidden" name="id" value=<?=$note['id']?>>
+                    <button class="text-sm text-red-500">Delete</button>
+                </form>
         </div>
     </main>
     <?php include __DIR__ . "/../partials/footer.php" ?>
