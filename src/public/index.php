@@ -6,4 +6,3 @@ spl_autoload_register(function ($class){
     // use two \\ because '\' is escape character in PHP.
     require base_path("{$class}.php");
 });
-require base_path("Core/router.php");
