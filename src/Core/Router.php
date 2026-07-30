@@ -3,20 +3,19 @@ namespace Core;
 class Router{
     protected $routes = [];
     public function get($uri, $controller){
-        add($uri, $controller, "GET");
-
+        $this->add($uri, $controller, "GET");
     }
     public function post($uri, $controller){
-        add($uri, $controller, "POST");
+        $this->add($uri, $controller, "POST");
     }
     public function delete($uri, $controller){
-        add($uri, $controller, "DELETE");
+        $this->add($uri, $controller, "DELETE");
     }
     public function put($uri, $controller){
-        add($uri, $controller, "PUT");
+        $this->add($uri, $controller, "PUT");
     }
     public function patch($uri, $controller){
-        add($uri, $controller, "PATCH");
+        $this->add($uri, $controller, "PATCH");
     }
     protected function abort($code = 404)
     {
@@ -29,14 +28,19 @@ class Router{
     }
     protected function add($uri, $controller, $method)
     {
-        $this->routes[] =[
+        $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
             'method' => strtoupper($method)
     ];
     }
     public function route($uri, $method){
-        array_key_exists($uri, $this->routes) ? require base_path($this->routes[$uri]): $this->abort();
+        foreach ($this->routes as $id => $route){
+            if ($route['method'] == strtoupper($method) && $route['uri'] == $uri){
+                return require base_path($route['controller']);
+            }
+        }
+        $this->abort();
     }
 }
 //$controllers = require base_path("routes.php");

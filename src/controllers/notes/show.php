@@ -6,7 +6,8 @@ use Core\Response;
 $currentUserId = 1;
 $config = require base_path('config.php');
 $db = new Database($config['database'], 'root');
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
+if ($_SERVER['REQUEST_METHOD'] == "POST"){ //$method == "DELETE"
+    dd(true);
     $note = $db->Query("SELECT * FROM notes WHERE id = :id", ['id' => $_POST['id']])->findOrAbort();
     authorize($note['user_id'] == $currentUserId);
     $db->Query("DELETE FROM notes WHERE id = :id", ['id' => $note['id']]);
