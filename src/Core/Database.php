@@ -23,7 +23,7 @@ class Database{
         }
         else return null;
     }
-    public function findOrAbort(){
+    public function findOrFail(){
         if (!isset($this->statement)){
             return null;
         }
