@@ -11,6 +11,7 @@ if(!VALIDATOR::email($email)){
 if(!VALIDATOR::string($password, 7, 255)){
     $errors['password'] = 'Password is too short or too long';
 }
+$password = password_hash($password, PASSWORD_BCRYPT);
 if(!empty($errors)){
     view('registration/create.view.php',[
         'errors' => $errors
