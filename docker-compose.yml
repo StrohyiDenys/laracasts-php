@@ -1,24 +1,24 @@
-services:
-  # Apache + PHP Server
-  web:
-    build: .
-    ports:
-      - "80:80"
-    volumes:
-      - ./src:/var/www/html
-    depends_on:
-      - db
+  services:
+    # Apache + PHP Server
+    web:
+      build: .
+      ports:
+        - "80:80"
+      volumes:
+        - ./src:/var/www/html
+      depends_on:
+        - db
 
-  # MySQL DB
-  db:
-    image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: myapp_db #
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:
-      - db_data:/var/lib/mysql
+    # MySQL DB
+    db:
+      image: mysql:8.0
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_DATABASE: myapp_db #
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      volumes:
+        - db_data:/var/lib/mysql
 
-volumes:
-  db_data:
+  volumes:
+    db_data:

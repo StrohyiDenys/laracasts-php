@@ -26,6 +26,7 @@
                     </button>
 
                     <!-- Profile dropdown -->
+                    <?php if($_SESSION['user'] ?? false):?>
                     <el-dropdown class="relative ml-3">
                         <button class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                             <span class="absolute -inset-1.5"></span>
@@ -39,6 +40,9 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Sign out</a>
                         </el-menu>
                     </el-dropdown>
+                    <?php else:?>
+                    <a href="/register" class="text-white">Register</a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="-mr-2 flex md:hidden">
