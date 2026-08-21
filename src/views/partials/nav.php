@@ -39,7 +39,7 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Sign out</a>
                         </el-menu>
                     </el-dropdown>
-                        <form action="/login" method="POST">
+                        <form action="/session" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit"
                             <?= isUrl("/login") ? "aria-current=\"page\" class=\"rounded-md bg-gray-900" : "class=\""?>rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white "> Log Out

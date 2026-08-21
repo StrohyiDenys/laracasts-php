@@ -13,5 +13,5 @@ $router->patch("/note", "controllers/notes/update.php")->only('auth');
 $router->get("/register", "controllers/registration/create.php")->only("guest");
 $router->post("/register", "controllers/registration/store.php")->only("guest");
 $router->get("/login", "controllers/session/create.php")->only("guest");
-$router->post("/login", "controllers/session/store.php")->only("guest");
-$router->delete("/login", "controllers/session/destroy.php")->only("auth");
+$router->post("/session", "controllers/session/store.php")->only("guest");
+$router->delete("/session", "controllers/session/destroy.php")->only("auth");

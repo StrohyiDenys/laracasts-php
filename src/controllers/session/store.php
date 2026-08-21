@@ -14,7 +14,7 @@ if(!VALIDATOR::string($password)){
     $errors['password'] = 'Password is invalid';
 }
 if(!empty($errors)){
-    view('registration/create.view.php',[
+    return view('session/create.view.php',[
         'errors' => $errors
     ]);
 }
@@ -24,12 +24,12 @@ $user = $db->Query("SELECT * FROM users WHERE email = :email", [
 
 if($user){
     if (password_verify($password, $user['password'])){
-        login($email);
+        login($user);
         header("Location: /");
         exit();
     }
 }
-$errors['password'] = "Uncorrect email or password";
+$errors['password'] = "Incorrect email or password";
 view('registration/create.view.php',[
     'errors' => $errors
 ]);

@@ -31,9 +31,9 @@ function abort($code = 404)
     die();
 }
 
-function login($email){
+function login($user){
     $_SESSION['user'] = [
-        'email' => $email,
+        'email' => $user['email'],
     ];
     session_regenerate_id(true);
 }
