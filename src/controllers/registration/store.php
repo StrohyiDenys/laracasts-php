@@ -34,10 +34,8 @@ $db->Query("INSERT INTO users (email, password) VALUES (:email, :password)", [
     'email' => $email,
     'password' => $password
 ]);
-$_SESSION['user'] = [
-    'email' => $email,
-    'password' => $password
-];
+
+login($email);
 header("Location: /");
 exit();
 }
