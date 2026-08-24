@@ -2,20 +2,16 @@
 // сделат чтобы выводились ошибки на соответствующей странице
 use Core\App;
 use Core\Validator;
+use Http\LoginForm;
+
 $db = App::resolve("Core\Database");
 $email = $_POST['email'];
 $password = $_POST['password'];
 //validation:
-$errors = [];
-if(!VALIDATOR::email($email)){
-    $errors['email'] = 'Use a valid email address';
-};
-if(!VALIDATOR::string($password)){
-    $errors['password'] = 'Password is invalid';
-}
-if(!empty($errors)){
+$form = new LoginForm;
+if(! $form->validate($email, $password)){
     return view('session/create.view.php',[
-        'errors' => $errors
+        'errors' => $form->errors()
     ]);
 }
 $user = $db->Query("SELECT * FROM users WHERE email = :email", [

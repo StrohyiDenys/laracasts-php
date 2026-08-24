@@ -35,7 +35,7 @@ $db->Query("INSERT INTO users (email, password) VALUES (:email, :password)", [
     'password' => $password
 ]);
 
-login($email);
+login($user);
 header("Location: /");
 exit();
 }
