@@ -8,7 +8,7 @@ class LoginForm
 {
     protected $errors = [];
 
-    public function validate($email, $password)
+    public function ggitvalidate($email, $password)
     {
         if(!VALIDATOR::email($email)){
             $this->errors['email'] = 'Use a valid email address';
@@ -20,5 +20,8 @@ class LoginForm
     }
     public function errors(){ //$errors getter
         return $this->errors;
+    }
+    public function addError($field, $message){
+        $this->errors[$field] = $message;
     }
 }
