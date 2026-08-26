@@ -1,5 +1,6 @@
 <?php
 use Core\App;
+use Core\Authenticator;
 use Core\Validator;
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -35,7 +36,7 @@ $db->Query("INSERT INTO users (email, password) VALUES (:email, :password)", [
     'password' => $password
 ]);
 
-login($user);
+(new Authenticator())->login($user);
 header("Location: /");
 exit();
 }
