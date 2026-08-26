@@ -2,6 +2,7 @@
 // сделат чтобы выводились ошибки на соответствующей странице
 use Core\App;
 use Core\Authenticator;
+use Core\Session;
 use Core\Validator;
 use Http\LoginForm;
 
@@ -20,10 +21,5 @@ if($form->validate($email, $password)){
 }
 //if validation/authentication failed:
 
-return view('session/create.view.php',[
-    'errors' => $form->errors()
-]);
-$errors['password'] = "Incorrect email or password";
-view('registration/create.view.php',[
-    'errors' => $errors
-]);
+Session::flash("errors", $form->errors());
+redirect("/login");
