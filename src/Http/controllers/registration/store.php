@@ -12,7 +12,6 @@ if(!VALIDATOR::email($email)){
 if(!VALIDATOR::string($password, 7, 255)){
     $errors['password'] = 'Password is too short or too long';
 }
-$password = password_hash($password, PASSWORD_BCRYPT);
 if(!empty($errors)){
     view('registration/create.view.php',[
         'errors' => $errors
@@ -29,14 +28,16 @@ $user = $db->Query("SELECT * FROM users WHERE email = :email", [
 if($user){
     header('Location: /'); // go to log in page
     exit();
-} else{
+}
+else{
     //if no - save account to db, log the user in, mark that the user logged in and redirect
 $db->Query("INSERT INTO users (email, password) VALUES (:email, :password)", [
     'email' => $email,
-    'password' => $password
+    'password' => password_hash($password, PASSWORD_BCRYPT)
 ]);
 
-(new Authenticator())->login($user);
+(new Authenticator)->login(['email'=>$email]);
+
 header("Location: /");
 exit();
 }
