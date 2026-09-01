@@ -14,5 +14,5 @@ class ValidationException extends \Exception
         $instance->errors = $errors;
         $instance->old = $old;
         throw $instance;
-    }g
+    }
 }
