@@ -15,6 +15,15 @@ $router = new Core\Router;
 $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 require base_path('routes.php');
-$router->route($uri, $method);
+
+try{
+    $router->route($uri, $method);
+}
+catch (\Core\ValidationException $e){
+    Session::flash("errors", $e->errors);
+    Session::flash("old", $e->old);
+    redirect($router->previousUrl()); //grabbing this data from SERVER is unsafe but okay cuz its study project
+}
+
 
 Session::unflash();

@@ -3,24 +3,21 @@
 use Core\App;
 use Core\Authenticator;
 use Core\Session;
+use Core\ValidationException;
 use Core\Validator;
 use Http\LoginForm;
 
 $db = App::resolve("Core\Database");
-$email = $_POST['email'];
-$password = $_POST['password'];
 //validation:
-$form = new LoginForm;
-if($form->validate($email, $password)){
-    //authentication
-    $auth = new Authenticator();
-    if ($auth->attempt($email, $password)){
-        redirect('/');
-    }
-    else $form->addError("password", "Authentication failed");
-}
-//if validation/authentication failed:
+$form = LoginForm::validate($attributes = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+]);
+//authentication
+$signedIn = (new Authenticator)->attempt( $attributes['email'], $attributes['password']);
 
-Session::flash("errors", $form->errors());
-Session::flash("old", ["email" => $_POST['email']]);
-redirect("/login");
+if (!$signedIn){
+    $form->addError('password', 'Authentication failed')->throw();
+}
+redirect('/');
+
