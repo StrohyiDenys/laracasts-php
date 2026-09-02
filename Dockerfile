@@ -1,5 +1,13 @@
 FROM php:8.2-apache
-
+## Composer
+## Install composer dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip
+#In below code first path is address where composer located in current image (downloaded frmo DockerHub),
+#the second path is the destination directory inside our container.
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Install pdo_mysql и mysqli extensions for working with DB
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Create path variable

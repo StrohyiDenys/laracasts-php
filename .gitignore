@@ -7,3 +7,6 @@ src/Заметки/*
 
 src/.idea/
 src/.idea/*
+
+src/vendor/
+src/vendor/*
