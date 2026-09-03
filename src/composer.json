@@ -1,10 +1,25 @@
 {
     "name": "strohyidenys/demo",
-    "require": {},
+    "require": {
+        "illuminate/collections": "^12.69"
+    },
     "autoload": {
         "psr-4": {
             "Core\\":"Core/",
             "Http\\":"Http/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^5.1"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\":"tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
