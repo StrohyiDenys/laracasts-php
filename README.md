@@ -14,7 +14,7 @@ This repository contains my code, exercises, and practice projects completed whi
 * Authentication, sessions, and middleware
 * Form handling, validation, and security
 * Code organization, refactoring, and Composer
-* Testing fundamentals
+* Testing fundamentals (Pest)
 
 **Object-Oriented Principles in PHP:**
 
